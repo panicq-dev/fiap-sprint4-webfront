@@ -12,8 +12,8 @@ export default function Nav({ abaAtiva, setAbaAtiva }) {
                     <li>
                         <button
                             type="button"
-                            onClick={() => setAbaAtiva('solucao')}
-                            className={abaAtiva === 'solucao' ? 'font-bold' : ''}
+                            onClick={() => setAbaAtiva('home')}
+                            className={abaAtiva === 'home' ? 'font-bold' : ''}
                         >
                             X
                         </button>
@@ -21,8 +21,8 @@ export default function Nav({ abaAtiva, setAbaAtiva }) {
                     <li>
                         <button
                             type="button"
-                            onClick={() => setAbaAtiva('publico-alvo')}
-                            className={abaAtiva === 'publico-alvo' ? 'font-bold' : ''}
+                            onClick={() => setAbaAtiva('sec-2')}
+                            className={abaAtiva === 'sec-2' ? 'font-bold' : ''}
                         >
                             X
                         </button>
@@ -39,8 +39,8 @@ export default function Nav({ abaAtiva, setAbaAtiva }) {
                     <li>
                         <button
                             type="button"
-                            onClick={() => setAbaAtiva('galeria')}
-                            className={abaAtiva === 'galeria' ? 'font-bold' : ''}
+                            onClick={() => setAbaAtiva('sec-4')}
+                            className={abaAtiva === 'sec-4' ? 'font-bold' : ''}
                         >
                             X
                         </button>
@@ -48,8 +48,8 @@ export default function Nav({ abaAtiva, setAbaAtiva }) {
                     <li>
                         <button
                             type="button"
-                            onClick={() => setAbaAtiva('equipe')}
-                            className={abaAtiva === 'equipe' ? 'font-bold' : ''}
+                            onClick={() => setAbaAtiva('sec-5')}
+                            className={abaAtiva === 'sec-5' ? 'font-bold' : ''}
                         >
                             X
                         </button>
