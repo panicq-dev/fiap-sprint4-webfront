@@ -64,6 +64,8 @@ npm run dev
 
 ```
 
+E depois acesse o link LOCALHOST gerado. Ou caso prefira, veja a aplicação na Vercel:
+
 Acesse https://fiap-sprint4-webfront.vercel.app/login
 
 Para verificar o código:
