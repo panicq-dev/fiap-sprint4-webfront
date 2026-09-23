@@ -1,4 +1,4 @@
-# NoteZ
+# SPRINT 4 - Projeto Acadêmico para Front-End Design e Web Development (Notez)
 
 Aplicação web para pesquisa e consulta de livros, criada como continuidade do projeto da Sprint 03 e da solução da Challenge.
 
@@ -64,7 +64,7 @@ npm run dev
 
 ```
 
-Acesse [http://localhost:3000](http://localhost:3000).
+Acesse https://fiap-sprint4-webfront.vercel.app/login
 
 Para verificar o código:
 
