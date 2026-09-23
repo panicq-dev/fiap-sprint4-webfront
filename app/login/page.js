@@ -1,64 +1,98 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+
+import { useAuth } from '../features/auth/hooks/useAuth';
+import PublicRoute from '../components/auth/PublicRoute';
+
+const EMAIL_PERMITIDO = 'email-exemplo@aura.com';
+const SENHA_PERMITIDA = '42426767';
 
 export default function LoginPage() {
-    const router = useRouter();
+    const { login } = useAuth();
+    const [entrando, setEntrando] = useState(false);
+    const [mensagemErro, setMensagemErro] = useState('');
 
-    function handleLoginSimulado(e) {
-        e.preventDefault();
+    function handleLogin(event) {
+        event.preventDefault();
 
-        // Define a flag de login simulado no localStorage
-        localStorage.setItem('usuarioLogado', 'true');
+        if (entrando) return;
 
-        // Redireciona diretamente para a página inicial/dashboard
-        router.push('/');
+        setMensagemErro('');
+
+        const emailInformado = event.currentTarget.email.value;
+        const senhaInformada = event.currentTarget.senha.value;
+
+        if (emailInformado !== EMAIL_PERMITIDO || senhaInformada !== SENHA_PERMITIDA) {
+            setMensagemErro('E-mail ou senha inválidos.');
+            return;
+        }
+
+        setEntrando(true);
+
+        try {
+            login('/');
+        } catch {
+            setEntrando(false);
+            setMensagemErro('Não foi possível entrar agora. Tente novamente.');
+        }
     }
 
     return (
-        <main className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-            <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-md">
-                <h1 className="mb-4 text-center text-2xl font-bold text-gray-800">
-                    Acesso ao NoteZ
-                </h1>
+        <PublicRoute>
+            <main className="flex min-h-screen items-center justify-center bg-gray-100 p-4 sm:p-6">
+                <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-200 sm:p-8">
+                    <h1 className="text-center text-2xl font-bold text-gray-900">NoteZ</h1>
+                    <p className="mt-3 text-center text-sm text-gray-600">
+                        Faça login para entrar no sistema.
+                    </p>
 
-                <p className="mb-6 text-center text-sm text-gray-600">
-                    Essa tela de login é apenas de enfeite, sem autenticação de verdade...
-                </p>
+                    <form onSubmit={handleLogin} className="mt-6 flex flex-col gap-4">
+                        <div>
+                            <label htmlFor="email" className="mb-1 block text-sm font-medium text-gray-700">
+                                E-mail:
+                            </label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                defaultValue="email-exemplo@aura.com"
+                                className="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2.5 text-sm text-gray-800 outline-none focus:border-gray-500"
+                                required
+                            />
+                        </div>
 
-                <form onSubmit={handleLoginSimulado} className="flex flex-col gap-4">
-                    <div>
-                        <label className="mb-1 block text-sm font-medium text-gray-700">
-                            E-mail:
-                        </label>
-                        <input
-                            type="email"
-                            defaultValue="email-exemplo@aura.com"
-                            className="w-full rounded border border-gray-300 p-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            required
-                        />
-                    </div>
+                        <div>
+                            <label htmlFor="senha" className="mb-1 block text-sm font-medium text-gray-700">
+                                Senha:
+                            </label>
+                            <input
+                                id="senha"
+                                name="senha"
+                                type="password"
+                                defaultValue="42426767"
+                                className="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2.5 text-sm text-gray-800 outline-none focus:border-gray-500"
+                                required
+                            />
+                        </div>
 
-                    <div>
-                        <label className="mb-1 block text-sm font-medium text-gray-700">
-                            Senha:
-                        </label>
-                        <input
-                            type="password"
-                            defaultValue="42426767"
-                            className="w-full rounded border border-gray-300 p-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            required
-                        />
-                    </div>
+                        {mensagemErro && (
+                            <p role="alert" className="text-sm text-red-600">
+                                {mensagemErro}
+                            </p>
+                        )}
 
-                    <button
-                        type="submit"
-                        className="mt-2 w-full rounded bg-blue-600 py-2 font-semibold text-white transition-colors hover:bg-blue-700"
-                    >
-                        Entre agora mesmo...
-                    </button>
-                </form>
-            </div>
-        </main>
+                        <button
+                            type="submit"
+                            disabled={entrando}
+                            aria-busy={entrando}
+                            className="mt-2 w-full rounded-md bg-gray-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-gray-700"
+                        >
+                            {entrando ? 'Entrando...' : 'Entrar'}
+                        </button>
+                    </form>
+                </div>
+            </main>
+        </PublicRoute>
     );
 }

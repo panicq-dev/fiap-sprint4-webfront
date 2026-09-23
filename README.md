@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NoteZ
 
-## Getting Started
+Aplicação web para pesquisa e consulta de livros, criada como continuidade do projeto da Sprint 03 e da solução da Challenge.
 
-First, run the development server:
+## Tecnologias utilizadas
+
+- React 19
+
+- Next.js 16 com App Router
+
+- Tailwind CSS 4
+
+- JavaScript
+
+- ESLint
+
+- Open Library API
+
+- Vercel para deploy
+
+## Funcionalidades
+
+- Busca de livros por título ou tema.
+
+- Visualização dos detalhes de um livro.
+
+- Rotas públicas e rotas protegidas.
+
+- Login simulado para acesso ao sistema.
+
+- Layout responsivo, adaptado a celulares, tablets e desktops.
+
+- Estados de carregamento, erro e conteúdo vazio na busca de livros.
+
+## Estrutura principal
+
+- `app/components`: componentes reutilizáveis e guards de autenticação.
+
+- `app/features/auth`: hook para autenticação.
+
+- `app/features/books`: componentes e hook para consumo da API de livros.
+
+- `app/login`: página de login.
+
+- `app/contato`: página protegida de contato.
+
+## Como instalar
+
+É necessário ter Node.js instalado.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+npm install
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Como executar
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Inicie o servidor de desenvolvimento:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
 
-## Learn More
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Acesse [http://localhost:3000](http://localhost:3000).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para verificar o código:
 
-## Deploy on Vercel
+```bash
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+npm run lint
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+
+Para gerar a versão de produção:
+
+```bash
+
+npm run build
+
+npm run start
+
+```
+
+O projeto não possui servidor back-end. A aplicação se conecta diretamente à API pública da Open Library:
+
+```text
+
+https://openlibrary.org/search.json
+
+```
+
+## Login para testes
+
+O login é simulado no navegador e aceita apenas as credenciais abaixo:
+
+- **E-mail:** `email-exemplo@aura.com`
+
+- **Senha:** `42426767`
+
+As credenciais são armazenadas no `localStorage` apenas para fins acadêmicos. Não há autenticação real, nem banco de dados ou sessão segura no servidor.
+
+## Uso de Inteligência Artificial
+
+A Inteligência Artificial foi usada como suporte durante o desenvolvimento. Ela ajudou com consultoria, revisão da organização dos componentes, sugestões de melhoria em responsividade e acessibilidade, além de revisão da documentação e do código. As decisões finais, testes, integração com a API e os ajustes no código foram realizados e validados pela equipe. Um exemplo de prompt usado: 'Analise o código em questão, e identifique erros de lógica e formas de simplificar o código, de forma inteligente. Me dê diversas sugestões de como melhorar o código, com fins de aprendizado. Não quero resposta com o código todo escrito, e sim sugestões de como melhorar e no que melhorar'.
